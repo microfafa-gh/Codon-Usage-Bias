@@ -111,6 +111,18 @@ def find_first_file(root: Path, suffixes):
             return hits[0]
     return None
 
+def normalize_accession(acc: str) -> str:
+    """
+    GTDB often prefixes accessions with RS_ or GB_.
+    NCBI wants bare GCF_/GCA_ accessions.
+    Examples:
+      RS_GCF_016650635.1 -> GCF_016650635.1
+      GB_GCA_123456789.1 -> GCA_123456789.1
+    """
+    acc = acc.strip()
+    return re.sub(r"^(RS_|GB_)", "", acc)
+
+
 def download_ncbi_dataset(accession: str, out_dir: Path) -> Path:
     """
     Download NCBI dataset zip for a genome accession using NCBI Datasets CLI.
@@ -215,10 +227,11 @@ def main(file_a: Path, file_c: Path, out_base: Path):
     # 3) Process each genome
     missing = []
     for genome_short, genes in genome_to_genes.items():
-        accession = short_to_acc.get(genome_short)
+        accession = normalize_accession(short_to_acc.get(genome_short, ""))
         if not accession:
             missing.append(genome_short)
             continue
+
 
         out_fasta = cds_dir / f"{genome_short}.cds.fna"
         if out_fasta.exists():
