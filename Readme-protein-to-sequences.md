@@ -35,7 +35,7 @@ python extract_cds_from_gtdb_accessions.py \
 
 Cluster array mode (recommended for many genomes):
 - Use `--array-total N` to split genomes into `N` shards.
-- Each array task processes only its own shard.
+- Each array task processes only its own batch.
 - The script auto-detects task index from `SLURM_ARRAY_TASK_ID`, `PBS_ARRAY_INDEX`, `SGE_TASK_ID`, or `LSB_JOBINDEX`.
 
 Example (SLURM):
@@ -67,6 +67,6 @@ python extract_cds_from_gtdb_accessions.py \
 
 Notes:
 - `--workers` = processes on a single node/task.
-- `--array-total` = number of cluster shards/tasks.
+- `--array-total` = number of cluster tasks.
 - You can combine both (`array` across nodes + `workers` per node).
 - If a per-genome output file already exists, that genome is skipped.
