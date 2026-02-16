@@ -18,10 +18,12 @@ conda install -c conda-forge ncbi-datasets-cli
 
 To run :
 
+```
 python extract_cds_from_gtdb_accessions.py \
   genome2abbrev.csv \
   sequenceid_new2original.csv \
   out_cds
+```
 
 Parallel on one node:
 
