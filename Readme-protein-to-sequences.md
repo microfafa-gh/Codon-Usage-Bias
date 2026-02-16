@@ -15,7 +15,7 @@ On many systems you can install via conda:
 ```
 conda install -c conda-forge ncbi-datasets-cli
 ```
-(If you already have datasets, you’re good.)
+
 To run :
 
 python extract_cds_from_gtdb_accessions.py \
