@@ -1,8 +1,13 @@
 reads File A (genome2abbrev.csv) to map short -> accession
+
 reads File C (sequenceid_new2original.csv) to map each short genome to its gene coordinates
+
 downloads each genome package (using the NCBI Datasets CLI, simplest reliable way from an accession) including GFF + genomic FASTA (.fna)
+
 extracts CDS nucleotide sequences from the genome FASTA using the Prodigal-style coordinates in File C
+
 writes one FASTA per genome containing the CDS sequences
+
 Requirements (one-time)
 Install NCBI Datasets CLI (recommended)
 This script expects the command datasets to be available.
